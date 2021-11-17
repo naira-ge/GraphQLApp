@@ -6,7 +6,7 @@ import { PokemonsContainer } from './containers/PokemonsContainer';
 function App (){
   // Instantiate required constructor fields
   const cache = new InMemoryCache();
-  const link = new HttpLink( { uri: 'https://graphql-pokeapi.graphcdn.app/' } );
+  const link = new HttpLink( { uri: 'https://graphql-pokemon2.vercel.app/' } );
   
   const client = new ApolloClient( {
     cache: cache,
