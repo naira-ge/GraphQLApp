@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+import { PokemonsContainer } from './containers/PokemonsContainer';
 
-function App() {
+function App (){
+  // Instantiate required constructor fields
+  const cache = new InMemoryCache();
+  const link = new HttpLink( { uri: 'https://graphql-pokeapi.graphcdn.app/' } );
+  
+  const client = new ApolloClient( {
+    cache: cache,
+    link: link,
+    
+    name: 'graphql-pokemon-client',
+    queryDeduplication: false,
+    defaultOptions: {
+      watchQuery: {
+        fetchPolicy: 'cache-and-network'
+      }
+    }
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={ client }>
+      <main>
+        <PokemonsContainer />
+      </main>
+    </ApolloProvider>
   );
 }
 
