@@ -15,20 +15,22 @@ function Pokemon ( pokemon ){
                 <img src={pokemon.pokemon.image} alt={pokemon.pokemon.name}/>
             </div>
             <div className={ styles.pokemon__attacks }>
+                <span className={ styles.pokemon__attack}>
                     <p>Special Attacks: </p>
                     { pokemon?.pokemon?.attacks?.special?.slice( 0, 3 ).map( attack => (
                         <span key={`${attack.name}-${attack.damage}`}>
                             {attack.name}
                         </span>
                     ))}
-            </div>
-            <div className={ styles.pokemon__attacks }>
+                </span>
+                <span className={ styles.pokemon__attack}>
                     <p>Fast Attacks: </p>
                     { pokemon?.pokemon?.attacks?.fast?.slice( 0, 3 ).map( attack => (
                         <span key={`${attack.name}-${attack.damage}`}>
                             {attack.name}
                         </span>
                     ))}
+                </span>
             </div>
         </div>
     )
